@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title>Redis Bootstrap</title> 
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+	
+	<style>
+		.del:checked + span{
+		color:red;
+		}
+	.task-list{
+		list-style:none;
+	}
+
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Redis Task</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+		<li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+
+	<form method=POST action="/add/task">
+		<h3>Add Task</h3>
+		<input type="text" name="task" placeholder="Add Task">
+		<input type="submit" value="submit">
+	</form>
+	<h3><%= title %></h3><br>
+
+	<form method=POST action="/task/delete">
+		
+		<ul class="task-list">
+			<% reply.forEach(function(task){%>
+			<li>
+			<lable>
+				<input type="checkbox" name="tasks" class="del" value="<%= task %>">
+				<span><%= task %>
+			</lable>
+			</li>
+			<%})%>
+		</ul>
+		<input type="submit" value="Delete">
+	</form>
+      <div class="well">	
+	<h3>Next Business call</h3>
+	Name      : <%= call.name %><br >
+	Cpmpany   : <%= call.company %><br >
+	Phone     : <%= call.name %><br >
+	Day & Time: <%= call.name %><br >
+     </div>
+
+     <div class="well">
+	<h3>Edit next call</h3>
+	<form method=POST action="/call/add">
+	<label>contact name</lable><br >
+	<input type="text" name="name" placeholder="Task Name">
+	<br ><br >
+	<label>Company</lable><br >
+	<input type="text" name="company" placeholder="Company">
+	<br ><br >
+	<label>Phone</lable><br >
+	<input type="text" name="phone" placeholder="Phone">
+	<br ><br >
+	<label>Day & Time</lable><br >
+	<input type="text" name="time" placeholder="Time">
+	<br ><br >
+	<input type="submit" value="submit">
+	</form>
+    </div>
+    </div>
+</body>
+</html>
